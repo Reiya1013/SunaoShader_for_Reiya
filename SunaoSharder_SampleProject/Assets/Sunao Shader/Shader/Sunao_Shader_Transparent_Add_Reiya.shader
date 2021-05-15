@@ -272,6 +272,7 @@ Shader "Sunao Shader/Add Reiya/Transparent" {
 
 		[SToggle]
 		_GameingEnable      ("Enable Gameing"					, int) = 0
+		_GameingSpeed       ("Gameing Speed"					, Range(0,100)) = 1.0
 
 		[SToggle]
 		_TeleportEnable     ("Enable Teleport"					, int) = 0

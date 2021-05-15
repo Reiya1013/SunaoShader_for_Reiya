@@ -1,5 +1,6 @@
 //----Gameing
 	uniform bool      _GameingEnable;
+	uniform float     _GameingSpeed;
 
 //----Teleport
 	uniform bool      _TeleportEnable;
@@ -93,7 +94,7 @@ float3 Disolve(fixed4 rgba, VOUT IN,float2 MainUV){
 		{
 			float dt = (_DisolveThreshold +1) / (2);
 			rgba.a = clamp(rand(MainUV) - dt ,0,1);
-			if (rgba.a <= _DisolveThreshold * _DisolveThreshold & _DisolveThreshold != 0)
+			if (rgba.a <= (_DisolveThreshold * (0.2 / _DisolveThreshold)) & _DisolveThreshold != 0)
 			{
 				clip(-1);
 			}
@@ -110,9 +111,12 @@ float3 DisolveAdd(float3 ds){
 //----ゲーミングカラー追加
 fixed3 Gameing(fixed3 OUT)
 {
-	OUT.x += _GameingEnable * clamp(OUT.x + (_SinTime.w ) ,0,1);
-	OUT.y += _GameingEnable * clamp(OUT.y + (_SinTime.z ) ,0,1);
-	OUT.z += _GameingEnable * clamp(OUT.z + (_SinTime.y ) ,0,1);
+	//OUT.x += _GameingEnable * sin((1-OUT.x) * ((_SinTime.w + 1.0)*0.5) * Speed );
+	//OUT.y += _GameingEnable * sin((1-OUT.z) * ((_SinTime.z + 1.0)*0.5) * Speed );
+	//OUT.z += _GameingEnable * sin((1-OUT.z) * ((_SinTime.y + 1.0)*0.5) * Speed );
+	OUT.x += _GameingEnable * sin((1-OUT.x) * _SinTime.w * _GameingSpeed );
+	OUT.y += _GameingEnable * sin((1-OUT.z) * _SinTime.z * _GameingSpeed );
+	OUT.z += _GameingEnable * sin((1-OUT.z) * _SinTime.y * _GameingSpeed );
 
 	return OUT;
 }

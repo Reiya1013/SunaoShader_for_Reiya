@@ -169,6 +169,7 @@ namespace SunaoShader_Apd_Reiya {
 		MaterialProperty LimitterMax;
 
 		MaterialProperty GameingEnable;
+		MaterialProperty GameingSpeed;
 		MaterialProperty TeleportEnable;
 
 		MaterialProperty DisolveEnable;
@@ -402,6 +403,7 @@ namespace SunaoShader_Apd_Reiya {
 
 
 			GameingEnable = FindProperty("_GameingEnable", Prop, false);
+			GameingSpeed = FindProperty("_GameingSpeed", Prop, false);
 			TeleportEnable = FindProperty("_TeleportEnable", Prop, false);
 
 			DisolveEnable = FindProperty("_DisolveEnable", Prop, false);
@@ -1095,6 +1097,8 @@ namespace SunaoShader_Apd_Reiya {
 					GUILayout.Label("Gameing Mode", EditorStyles.boldLabel);
 
 					ME.ShaderProperty(GameingEnable, new GUIContent("Gameing Mode"));
+					if (GameingEnable.floatValue >= 0.5f)
+						ME.ShaderProperty(GameingSpeed, new GUIContent("Gameing Speed"));
 
 				}
 
