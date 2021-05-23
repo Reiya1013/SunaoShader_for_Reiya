@@ -80,6 +80,7 @@ struct VOUT {
 	float2 uv      : TEXCOORD0;
 	float3 color   : TEXCOORD1;
 	float  mask    : TEXCOORD2;
+	float3 posWorld: TEXCOORD17;
 
 	LIGHTING_COORDS(3 , 4)
 	UNITY_FOG_COORDS(5)
@@ -94,6 +95,9 @@ struct VOUT {
 VOUT vert (VIN v) {
 
 	VOUT o;
+//-------------------------------------ワールド座標
+	o.pos     = UnityObjectToClipPos(v.vertex);
+	o.posWorld= mul(unity_ObjectToWorld , v.vertex).xyz;
 
 //----UV
 	o.uv    = (v.uv * _MainTex_ST.xy) + _MainTex_ST.zw;
@@ -216,6 +220,9 @@ VOUT vert (VIN v) {
 float4 frag (VOUT IN) : COLOR {
 //----HiddenModeセット(Reiya)
 	HiddemMode();
+	
+//----非表示判定(Reiya)
+	HiddenDistance(IN);
 
 //----ディゾルブ(Reiya)
 	Disolve(IN);

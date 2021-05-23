@@ -8,6 +8,9 @@ float4 frag (VOUT IN) : COLOR {
 //----HiddenModeセット(Reiya)
 	HiddemMode();
 
+//----非表示判定(Reiya)
+	HiddenDistance(IN);
+
 //----ワールド座標
 	float3 WorldPos     = mul(unity_ObjectToWorld , IN.vertex).xyz;
 
@@ -32,6 +35,7 @@ float4 frag (VOUT IN) : COLOR {
 
 //----ディゾルブ(Reiya)
 	float3 DisolveEmission     =Disolve(tex2D (_DisolveTex, MainUV),IN,MainUV);
+
 
 //----デカール
 	float4 DecalColor   = float4(0.0f , 0.0f , 0.0f , 1.0f);

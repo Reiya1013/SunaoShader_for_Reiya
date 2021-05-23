@@ -14,6 +14,9 @@ VOUT vert (VIN v) {
 
 	o.vertex  = v.vertex;
 
+//-------------------------------------ワールド座標
+	o.posWorld = PosW;
+
 //-------------------------------------UV
 	o.uv      = (v.uv * _MainTex_ST.xy) + _MainTex_ST.zw;
 

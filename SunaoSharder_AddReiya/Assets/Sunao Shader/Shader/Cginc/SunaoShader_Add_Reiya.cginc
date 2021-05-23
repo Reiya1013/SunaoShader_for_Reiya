@@ -15,7 +15,6 @@
 	uniform sampler2D _DisolveTimeTex;
 	uniform float     _DisolveStartTime;
 	uniform float     _DisolveEndTime;
-	
 
 //----Hidden
 	uniform uint      _Hidden;
@@ -23,6 +22,7 @@
 	uniform sampler2D _HiddenEmissionMap;
 	uniform sampler2D _HiddenEmissionMap2;
 	int HiddenTexMode;
+    uniform float	  _HiddenDistance;
 	
 //----HiddenTexMode
 void HiddemMode()
@@ -65,7 +65,13 @@ float4 MainTexSampleTex2D(UNITY_DECLARE_TEX2D_NOSAMPLER(Map) ,float2 UV)
 	}
 }
 
-
+void HiddenDistance(VOUT IN)
+{
+	// カメラとオブジェクトの距離(長さ)を取得
+	float dist = length(_WorldSpaceCameraPos - IN.posWorld);
+    if (dist <= _HiddenDistance)
+        clip(-1);
+}
 
 
 //----ランダム関数
@@ -150,7 +156,7 @@ float VrtxTelepo(VIN v,VOUT o)
 			n.y = 0;
 		}
 
-		return UnityObjectToClipPos (v.vertex).y - n.y;    
+		return o.pos.y - n.y;    
 	}
 
 	return o.pos.y;

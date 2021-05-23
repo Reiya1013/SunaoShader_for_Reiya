@@ -206,6 +206,7 @@ struct VOUT {
 	float2 pduv    : TEXCOORD12;
 	float3 peprm   : TEXCOORD13;
 	float3 pview   : TEXCOORD14;
+	float3 posWorld: TEXCOORD17;
 
 	#ifdef PASS_FB
 		float3 shdir   : LIGHTDIR1;

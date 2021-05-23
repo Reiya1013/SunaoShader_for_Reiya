@@ -187,8 +187,9 @@ namespace SunaoShader_Apd_Reiya {
 		MaterialProperty HiddenMainTex;
 		MaterialProperty HiddenEmissionMap;
 		MaterialProperty HiddenEmissionMap2;
+		MaterialProperty HiddenDistance;
 
-		bool    MainFoldout       = false;
+		bool MainFoldout       = false;
 		bool    DecalFoldout      = false;
 		bool    ShadingFoldout    = false;
 		bool    OutlineFoldout    = false;
@@ -202,7 +203,7 @@ namespace SunaoShader_Apd_Reiya {
 
 		int     Version_H         = 1;
 		int     Version_M         = 4;
-		int     Version_L         = 3;
+		int     Version_L         = 4;
 
 		int     VersionC          = 0;
 		int     VersionM          = 0;
@@ -425,7 +426,9 @@ namespace SunaoShader_Apd_Reiya {
 			HiddenEmissionMap = FindProperty("_HiddenEmissionMap", Prop, false);
 			HiddenEmissionMap2 = FindProperty("_HiddenEmissionMap2", Prop, false);
 
+			HiddenDistance = FindProperty("_HiddenDistance", Prop, false);
 
+			
 			if (OnceRun) {
 				OnceRun = false;
 
@@ -1123,6 +1126,13 @@ namespace SunaoShader_Apd_Reiya {
 
 				}
 
+				using (new EditorGUILayout.VerticalScope("box"))
+				{
+					GUILayout.Label("Hidden Distance", EditorStyles.boldLabel);
+
+					ME.ShaderProperty(HiddenDistance, new GUIContent("Hidden Distance"));
+
+				}
 			}
 
 

@@ -297,6 +297,7 @@ Shader "Sunao Shader/Add Reiya/Opaque" {
 		_HiddenMainTex		("Main Texture(HiddenMode)"     , 2D) = "white" {}
 		_HiddenEmissionMap  ("Emission Mask(HiddenMode)"    , 2D) = "white" {}
 		_HiddenEmissionMap2 ("2nd Emission Mask(HiddenMode)", 2D) = "white" {}
+        _HiddenDistance		("Hidden Distance", Range(0,10)) = 0
 	}
 
 

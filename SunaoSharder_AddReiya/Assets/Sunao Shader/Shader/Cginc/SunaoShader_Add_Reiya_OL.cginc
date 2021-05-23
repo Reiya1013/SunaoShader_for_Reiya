@@ -22,6 +22,7 @@
 	uniform sampler2D _HiddenEmissionMap;
 	uniform sampler2D _HiddenEmissionMap2;
 	int HiddenTexMode;
+    uniform float	  _HiddenDistance;
 	
 //----HiddenTexMode
 void HiddemMode()
@@ -38,6 +39,13 @@ void HiddemMode()
 		HiddenTexMode = 1;
 }
 
+void HiddenDistance(VOUT IN)
+{
+	// カメラとオブジェクトの距離(長さ)を取得
+	float dist = length(_WorldSpaceCameraPos - IN.posWorld);
+    if (dist <= _HiddenDistance)
+        clip(-1);
+}
 
 //----SetMainTex
 float4 MainTexSampleTex2D(float2 UV)

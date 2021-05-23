@@ -154,7 +154,7 @@ Material:
     - _DirectionalLight: 1
     - _DisolveEmission: 0.54
     - _DisolveEnable: 1
-    - _DisolveThreshold: 0
+    - _DisolveThreshold: 0.031
     - _DstBlend: 0
     - _Emission: 1
     - _EmissionAnimX: 1
@@ -182,6 +182,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Hidden: 0
+    - _HiddenDistance: 0
     - _IgnoreTexAlphaE: 0
     - _IgnoreTexAlphaPE: 0
     - _IgnoreTexAlphaR: 0
@@ -269,7 +270,7 @@ Material:
     - _UVSec: 0
     - _Unlit: 0
     - _VersionH: 1
-    - _VersionL: 3
+    - _VersionL: 4
     - _VersionM: 4
     - _VertexColor: 0
     - _ZWrite: 1
