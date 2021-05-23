@@ -26,8 +26,13 @@ Main Texture(HiddenMode) : MainTextureに置き換わる画像を設定します
 Emission Mask1&2(HiddenMode) : MainEmissionMaskにかわる画像を設定します。  
 
 **GamingModeオプション**  
-![image](https://user-images.githubusercontent.com/62868883/118152104-4bad5980-b44f-11eb-9b1e-bcb1608eabb9.png)  
+![image](https://user-images.githubusercontent.com/62868883/119250682-b80d2300-bbdc-11eb-8389-4666dcaa9ca6.png)  
 GamingMode : ONにするだけでゲーミングするよ。
+GamingSpeed : 色の変わるスピードを変更します。
+
+**Hidden Distanceオプション**  
+![image](https://user-images.githubusercontent.com/62868883/119250677-ae83bb00-bbdc-11eb-8145-7b0a6003ad81.png)  
+Hidden Distance : カメラに映らなくなる距離を設定します。だいたいUnity上の距離と同等です。あまり大きくするとVRCのカメラにも映らなくなります。
 
 # バグ報告
 下記にお願いいたします。  
