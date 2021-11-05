@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DemoMaterial
-  m_Shader: {fileID: 4800000, guid: c99ee80c64048ca44b4e7c5d06f723bf, type: 3}
+  m_Shader: {fileID: 4800000, guid: 072b28f33d682ab41a12ca4df93e83ad, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -91,6 +91,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -126,12 +130,14 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _AlphaMaskStrength: 1
+    - _Ambient: 0
     - _BlendOperation: 4
     - _BlightOffset: 0
     - _BlightOutput: 1
     - _Bright: 1
     - _BumpScale: 1
     - _Culling: 0
+    - _CustomColors: 0
     - _Cutoff: 0.5
     - _Cutout: 0.5
     - _DecalAnimX: 1
@@ -150,11 +156,12 @@ Material:
     - _DecalScrollY: 0
     - _DecalSizeX: 0.5
     - _DecalSizeY: 0.5
+    - _Destruction: 0
     - _DetailNormalMapScale: 1
     - _DirectionalLight: 1
     - _DisolveEmission: 0.54
     - _DisolveEnable: 1
-    - _DisolveThreshold: 0.031
+    - _DisolveThreshold: 0
     - _DstBlend: 0
     - _Emission: 1
     - _EmissionAnimX: 1
@@ -172,6 +179,7 @@ Material:
     - _EmissionWaveform: 0
     - _EnableBlightFix: 0
     - _EnableGammaFix: 0
+    - _EnableGeometry: 1
     - _EnableZWrite: 1
     - _GameingEnable: 1
     - _GameingSpeed: 1
@@ -181,8 +189,10 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Hidden: 0
-    - _HiddenDistance: 0
+    - _Glow: 0
+    - _Hidden: 1
+    - _HiddenDistance: 2.16
+    - _HiddenReverse: 0
     - _IgnoreTexAlphaE: 0
     - _IgnoreTexAlphaPE: 0
     - _IgnoreTexAlphaR: 0
@@ -228,6 +238,8 @@ Material:
     - _ParallaxScrY: 0
     - _ParallaxWaveform: 0
     - _PointLight: 1
+    - _PositionAdd: -0.02
+    - _PositionFactor: 1
     - _ReflectLit: 3
     - _ReflectionEnable: 0
     - _ReflectionFO: 0
@@ -238,7 +250,9 @@ Material:
     - _RimLitLighthing: 1
     - _RimLitMode: 0
     - _RimLitTexColor: 0
+    - _RotationFactor: 1
     - _SHLight: 1
+    - _ScaleFactor: 1
     - _Shade: 0.3
     - _ShadeColor: 0.5
     - _ShadeGradient: 0.75
@@ -254,7 +268,7 @@ Material:
     - _StencilCompMode: 6
     - _StencilNumb: 4
     - _SunaoShaderType: 0
-    - _TeleportEnable: 1
+    - _TeleportEnable: 0
     - _TeleportThreshold: 0
     - _Toon: 9
     - _ToonEnable: 0
@@ -281,6 +295,7 @@ Material:
     - _DisolveEmissionColor: {r: 0.09567462, g: 0.1876517, b: 0.4716981, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightDir: {r: -1, g: -1, b: 0, a: 1}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
     - _OutLineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ParallaxColor: {r: 1, g: 1, b: 1, a: 1}

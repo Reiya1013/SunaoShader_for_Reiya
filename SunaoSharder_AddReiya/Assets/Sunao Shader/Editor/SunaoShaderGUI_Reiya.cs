@@ -189,6 +189,13 @@ namespace SunaoShader_Apd_Reiya {
 		MaterialProperty HiddenEmissionMap2;
 		MaterialProperty HiddenDistance;
 
+		MaterialProperty EnableGeometry;
+		MaterialProperty Destruction;
+		MaterialProperty ScaleFactor;
+		MaterialProperty RotationFactor;
+		MaterialProperty PositionFactor;
+		MaterialProperty PositionAdd;
+		
 		bool MainFoldout       = false;
 		bool    DecalFoldout      = false;
 		bool    ShadingFoldout    = false;
@@ -428,7 +435,13 @@ namespace SunaoShader_Apd_Reiya {
 
 			HiddenDistance = FindProperty("_HiddenDistance", Prop, false);
 
-			
+			EnableGeometry = FindProperty("_EnableGeometry", Prop, false);
+			Destruction = FindProperty("_Destruction", Prop, false);
+			ScaleFactor = FindProperty("_ScaleFactor", Prop, false);
+			RotationFactor = FindProperty("_RotationFactor", Prop, false);
+			PositionFactor = FindProperty("_PositionFactor", Prop, false);
+			PositionAdd = FindProperty("_PositionAdd", Prop, false);
+
 			if (OnceRun) {
 				OnceRun = false;
 
@@ -1131,6 +1144,24 @@ namespace SunaoShader_Apd_Reiya {
 					GUILayout.Label("Hidden Distance", EditorStyles.boldLabel);
 
 					ME.ShaderProperty(HiddenDistance, new GUIContent("Hidden Distance"));
+
+				}
+
+				using (new EditorGUILayout.VerticalScope("box"))
+				{
+					GUILayout.Label("Enable Geometry", EditorStyles.boldLabel);
+
+					ME.ShaderProperty(EnableGeometry, new GUIContent("Enable Geometry"));
+					if (EnableGeometry.floatValue >= 0.5f)
+                    {
+						ME.ShaderProperty(Destruction, new GUIContent("Destruction"));
+						ME.ShaderProperty(ScaleFactor, new GUIContent("Scale Factor"));
+						ME.ShaderProperty(RotationFactor, new GUIContent("Rotation Factor"));
+						ME.ShaderProperty(PositionFactor, new GUIContent("Position Factor"));
+						ME.ShaderProperty(PositionAdd, new GUIContent("Position Add Point"));
+						
+
+					}
 
 				}
 			}

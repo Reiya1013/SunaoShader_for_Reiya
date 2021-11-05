@@ -169,6 +169,18 @@
 	uniform bool      _LimitterEnable;
 	uniform float     _LimitterMax;
 
+//----ジオメトリシェーダー用
+	uniform bool      _EnableGeometry;
+	uniform float     _Destruction;
+	uniform float     _ScaleFactor;
+	uniform float     _RotationFactor;
+	uniform float     _PositionFactor;
+	uniform float     _PositionAdd;
+
+			//	float _ScaleFactor = 0.5;
+			//float _RotationFactor= 1;
+			//float _PositionFactor= 2;
+
 
 //-------------------------------------頂点シェーダ入力構造体
 
@@ -179,7 +191,6 @@ struct VIN {
 	float4 tangent : TANGENT;
 	float3 color   : COLOR;
 };
-
 
 //-------------------------------------頂点シェーダ出力構造体
 
@@ -225,6 +236,52 @@ struct VOUT {
 	#endif
 
 };
+
+
+struct VOUT_geo {
+
+	float4 pos     : SV_POSITION;
+	float4 vertex  : VERTEX;
+	float2 uv      : TEXCOORD0;
+	float4 uvanm   : TEXCOORD1;
+	float4 decal   : TEXCOORD2;
+	float4 decal2  : TEXCOORD3;
+	float4 decanm  : TEXCOORD4;
+	float3 normal  : NORMAL;
+	float3 color   : COLOR0;
+	float4 tangent : TANGENT;
+	float3 ldir    : LIGHTDIR0;
+	float4 toon    : TEXCOORD5;
+	float3 tanW    : TEXCOORD6;
+	float3 tanB    : TEXCOORD7;
+	float3 vfront  : TEXCOORD8;
+	float4 euv     : TEXCOORD9;
+	float3 eprm    : TEXCOORD10;
+	float4 peuv    : TEXCOORD11;
+	float2 pduv    : TEXCOORD12;
+	float3 peprm   : TEXCOORD13;
+	float3 pview   : TEXCOORD14;
+	float3 posWorld: TEXCOORD17;
+	float3 test : TEXCOORD18;
+
+	#ifdef PASS_FB
+		float3 shdir   : LIGHTDIR1;
+		float3 shmax   : COLOR1;
+		float3 shmin   : COLOR2;
+		float4 vldirX  : LIGHTDIR2;
+		float4 vldirY  : LIGHTDIR3;
+		float4 vldirZ  : LIGHTDIR4;
+		float4 vlcorr  : TEXCOORD15;
+		float4 vlatn   : TEXCOORD16;
+	#endif
+
+	UNITY_FOG_COORDS(17)
+	#ifdef PASS_FA
+		LIGHTING_COORDS(18 , 19)
+	#endif
+
+};
+
 
 //-------------------------------------追加機能用
 

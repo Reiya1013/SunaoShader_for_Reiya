@@ -285,19 +285,28 @@ Shader "Sunao Shader/Add Reiya/Opaque" {
 		_TeleportThreshold  ("Teleport Threshold"				, Range(0,1))= 0.0
 
 		[SToggle]
-		_DisolveEnable      ("Enable Disolve"				, int) = 0
-		_DisolveTex			("DisolveTex (RGB)"				, 2D) = "white" {}
-		_DisolveEmissionMap ("Disolve Emission Mask"        , 2D) = "white" {}
-		_DisolveEmissionColor("Disolve Emission Color"      , Color) = (1,1,1)
-		_DisolveEmission    ("Disolve Emission Intensity"   , Range( 0.0,  2.0)) = 1.0
-		_DisolveThreshold	("Threshold"					, Range(0,1))= 0.0
+		_DisolveEnable      ("Enable Disolve"					, int) = 0
+		_DisolveTex			("DisolveTex (RGB)"					, 2D) = "white" {}
+		_DisolveEmissionMap ("Disolve Emission Mask"			, 2D) = "white" {}
+		_DisolveEmissionColor("Disolve Emission Color"			, Color) = (1,1,1)
+		_DisolveEmission    ("Disolve Emission Intensity"		, Range( 0.0,  2.0)) = 1.0
+		_DisolveThreshold	("Threshold"						, Range(0,1))= 0.0
 
 		[KeywordEnum(OFF, VRCCameraToOFF, VRCCameraToSubMainTexture, MainCameraToSubMainTexture, MainCameraOFF)]
-		_Hidden				("Hidden"						, int) = 0
-		_HiddenMainTex		("Main Texture(HiddenMode)"     , 2D) = "white" {}
-		_HiddenEmissionMap  ("Emission Mask(HiddenMode)"    , 2D) = "white" {}
-		_HiddenEmissionMap2 ("2nd Emission Mask(HiddenMode)", 2D) = "white" {}
-        _HiddenDistance		("Hidden Distance", Range(0,10)) = 0
+		_Hidden				("Hidden"							, int) = 0
+		_HiddenMainTex		("Main Texture(HiddenMode)"			, 2D) = "white" {}
+		_HiddenEmissionMap  ("Emission Mask(HiddenMode)"		, 2D) = "white" {}
+		_HiddenEmissionMap2 ("2nd Emission Mask(HiddenMode)"	, 2D) = "white" {}
+        _HiddenDistance		("Hidden Distance"					, Range(0,10)) = 0
+
+		[SToggle]
+		_EnableGeometry     ("Enable Geometry"					, int) = 0
+		_Destruction		("Destruction"						, Range(0,1))= 0.0
+		_ScaleFactor		("Scale Factor"						, Range(0,1))= 0.0
+		_RotationFactor		("Rotation Factor"					, Range(0,1))= 0.0
+		_PositionFactor		("Position Factor"					, Range(0,1))= 0.0
+		_PositionAdd		("Position AddPoint"				, Range(-1,1))= 0.0
+
 	}
 
 
@@ -323,6 +332,7 @@ Shader "Sunao Shader/Add Reiya/Opaque" {
 
 			CGPROGRAM
 			#pragma vertex vert
+			#pragma geometry geom
 			#pragma fragment frag
 			#pragma multi_compile_fwdbase
 			#pragma multi_compile_fog
@@ -397,6 +407,7 @@ Shader "Sunao Shader/Add Reiya/Opaque" {
 
 			CGPROGRAM
 			#pragma vertex vert
+			#pragma geometry geom
 			#pragma fragment frag
 			#pragma multi_compile_fwdadd
 			#pragma multi_compile_fog
@@ -430,6 +441,32 @@ Shader "Sunao Shader/Add Reiya/Opaque" {
 
 			ENDCG
 		}
+
+		Pass
+		{
+			Tags { "RenderType"="Transparent" "LightMode" = "ForwardAdd" "IgnoreProjector" = "True"}
+			LOD 100
+			Cull off
+			Blend SrcAlpha OneMinusSrcAlpha
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			#pragma geometry geom
+			#pragma hull HS
+			#pragma domain DS
+			#pragma target 5.0
+
+			#define INPUT_PATCH_SIZE 3
+			#define OUTPUT_PATCH_SIZE 3
+			
+			#include "UnityCG.cginc"
+			#include "Lighting.cginc"
+			#include "AutoLight.cginc"
+			#include "./cginc/SunaoShader_Crystal_Reiya.cginc"
+			ENDCG
+		}
+
 	}
 
 	FallBack "Diffuse"

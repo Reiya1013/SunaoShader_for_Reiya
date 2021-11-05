@@ -299,6 +299,13 @@ Shader "Sunao Shader/Add Reiya/Transparent" {
 		_HiddenEmissionMap2 ("2nd Emission Mask(HiddenMode)", 2D) = "white" {}
         _HiddenDistance		("Hidden Distance", Range(0,10)) = 0
 
+		
+		[SToggle]
+		_EnableGeometry     ("Enable Geometry"					, int) = 0
+		_Destruction		("Destruction"						, Range(0,1))= 0.0
+		_ScaleFactor		("Scale Factor"						, Range(0,1))= 0.0
+		_RotationFactor		("Rotation Factor"					, Range(0,1))= 0.0
+		_PositionFactor		("Position Factor"					, Range(0,1))= 0.0
 	}
 
 
